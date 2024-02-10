@@ -1,13 +1,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    var game = Game()
+    @State var game = Game()
+    @State var inGame = true
     
     var body: some View {
         VStack {
             
             HStack {
-                Text("Dealer: ")
+                DealerView(dealer: game.dealer)
             }
             
             HStack {
@@ -18,9 +19,24 @@ struct ContentView: View {
                 PlayerView(player: game.player)
             }
             
-            Button("Hit", action: {
-                game.player.hit()
-            })
+            HStack {
+                Button("Hit", action: {
+                    game.player.hit()
+                })
+                .disabled(!inGame)
+                
+                Button("Stand", action: {
+                    game.stand()
+                    inGame.toggle()
+                })
+                .disabled(!inGame)
+                
+                Button("Refresh", action: {
+                    game = Game()
+                    inGame.toggle()
+                })
+                .disabled(inGame)
+            }
             
         }
     }

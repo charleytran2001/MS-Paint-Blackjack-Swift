@@ -17,7 +17,7 @@ class Player: ObservableObject  {
     @Published var cards: [Card] = []
     @Published var total = 0
     var aceCheck = false
-    var hardHand = false
+    var hardHand = true
     
     func hit() {
         if(total < 21 && deck.totalCards != 0) {
@@ -28,6 +28,7 @@ class Player: ObservableObject  {
                 // If first Ace, add 11 to total. Otherwise add 1.
                 if(aceCheck == false) {
                     aceCheck = true
+                    hardHand = false
                     total += 11
                 } else {
                     total += 1
