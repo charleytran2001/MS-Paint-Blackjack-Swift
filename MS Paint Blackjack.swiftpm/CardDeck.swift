@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Card {
+struct Card: Hashable {
     let suit: String
     let face: String
     
@@ -17,14 +17,14 @@ struct Card {
     }
 }
 
-class Deck {
+class Deck: ObservableObject {
     var deckArray: [Card] = []
 
     let suitArray = ["S", "H", "C", "D"]
     let faceArray = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
     
-    var totalCards = 0
-    var drawnCards = 0
+    @Published var totalCards = 0
+    @Published var drawnCards = 0
     
     init(numOfDecks: Int) {
         for _ in 1...numOfDecks {
