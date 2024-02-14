@@ -7,35 +7,41 @@ struct ContentView: View {
     var body: some View {
         VStack {
             
+            // Dealer Cards
             HStack {
-                DealerView(dealer: game.dealer)
+                DealerView(dealer: game.dealer, inGame: $inGame)
             }
             
+            // Card Deck Info
             HStack {
                 CardDeckView(deck: game.deck)
             }
+            .padding()
             
+            // Player Cards
             HStack {
                 PlayerView(player: game.player)
             }
+            .padding()
             
+            // Player Controls
             HStack {
-                Button("Hit", action: {
-                    game.player.hit()
-                })
-                .disabled(!inGame)
+                if(inGame) {
+                    Button("Hit", action: {
+                        game.player.hit()
+                    })
+                    
+                    Button("Stand", action: {
+                        game.stand()
+                        inGame.toggle()
+                    })
+                } else {
+                    Button("Play Again", action: {
+                        game = Game()
+                        inGame.toggle()
+                    })
+                }
                 
-                Button("Stand", action: {
-                    game.stand()
-                    inGame.toggle()
-                })
-                .disabled(!inGame)
-                
-                Button("Refresh", action: {
-                    game = Game()
-                    inGame.toggle()
-                })
-                .disabled(inGame)
             }
             
         }

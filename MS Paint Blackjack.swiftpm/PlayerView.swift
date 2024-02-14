@@ -12,9 +12,11 @@ struct PlayerView: View {
 
     var body: some View {
         VStack {
-            Text("Player: \(player.total)")
+            // Display player's card total.
+            Text("Player Total: \(player.total)")
             
             HStack {
+                // Display all player cards.
                 ForEach(player.cards, id: \.self) { card in
                     Text("\(card.suit)\(card.face)")
                 }

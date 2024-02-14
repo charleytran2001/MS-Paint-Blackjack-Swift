@@ -27,6 +27,7 @@ class Deck: ObservableObject {
     @Published var drawnCards = 0
     
     init(numOfDecks: Int) {
+        // Generates deck(s) of cards.
         for _ in 1...numOfDecks {
             for suit in suitArray {
                 for face in faceArray {
@@ -36,6 +37,7 @@ class Deck: ObservableObject {
                 }
             }
         }
+        // Shuffles all cards in deck(s).
         deckArray.shuffle()
     }
     

@@ -10,12 +10,13 @@ import Foundation
 class Game {
     var deck: Deck
     var player: Player
-    var dealer: Player
+    var dealer: Dealer
     
     init() {
+        // Control how many decks in game.
         deck = Deck(numOfDecks: 1)
         player = Player(deck: deck)
-        dealer = Player(deck: deck)
+        dealer = Dealer(deck: deck)
         
         // Starting Hand
         player.hit()

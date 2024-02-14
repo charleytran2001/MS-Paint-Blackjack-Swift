@@ -8,16 +8,25 @@
 import SwiftUI
 
 struct DealerView: View {
-    @ObservedObject var dealer: Player
+    @ObservedObject var dealer: Dealer
+    @Binding var inGame: Bool
 
     var body: some View {
         VStack {
-            Text("Dealer: \(dealer.total)")
+            // Display dealer's card total.
+            Text(inGame ? "Dealer Total: \(dealer.face2Value(face: dealer.cards[0].face))" : "Dealer Total: \(dealer.total)")
             
             HStack {
-                ForEach(dealer.cards, id: \.self) { card in
-                    Text("\(card.suit)\(card.face)")
+                // Display dealer's first card only before stand, display all cards after stand.
+                if(inGame) {
+                    Text("\(dealer.cards[0].suit)\(dealer.cards[0].face)")
+                    Text("??")
+                } else {
+                    ForEach(dealer.cards, id: \.self) { card in
+                        Text("\(card.suit)\(card.face)")
+                    }
                 }
+                
             }
         }
     }
