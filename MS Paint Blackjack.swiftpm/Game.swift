@@ -7,10 +7,11 @@
 
 import Foundation
 
-class Game {
+class Game: ObservableObject {
     var deck: Deck
     var player: Player
     var dealer: Dealer
+    var gameVictor = ""
     
     init() {
         // Control how many decks in game.
@@ -35,6 +36,26 @@ class Game {
                 break
             }
         }
+        
+        switch(true) {
+        case (dealer.total == 21 && dealer.cards.count == 2):
+            gameVictor = "Dealer Blackjack: You Lose"
+        case (player.total == 21 && player.cards.count == 2):
+            gameVictor = "Blackjack: You Win"
+        case (player.total > 21):
+            gameVictor = "Bust: You Lose"
+        case (dealer.total > 21):
+            gameVictor = "Dealer Bust: You Win"
+        case (player.total < dealer.total):
+            gameVictor = "Smaller Hand: You Lose"
+        case (player.total > dealer.total):
+            gameVictor = "Bigger Hand: You Win"
+        case (player.total == dealer.total):
+            gameVictor = "Equal Hands: It's a Tie"
+        default:
+            gameVictor = "uh oh"
+        }
+        
     }
     
 }

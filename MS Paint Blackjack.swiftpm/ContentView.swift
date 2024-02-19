@@ -18,6 +18,11 @@ struct ContentView: View {
             }
             .padding()
             
+            // Game Victor Message
+            if(!inGame) {
+                Text(game.gameVictor)
+            }
+            
             // Player Cards
             HStack {
                 PlayerView(player: game.player)
@@ -27,14 +32,7 @@ struct ContentView: View {
             // Player Controls
             HStack {
                 if(inGame) {
-                    Button("Hit", action: {
-                        game.player.hit()
-                    })
-                    
-                    Button("Stand", action: {
-                        game.stand()
-                        inGame.toggle()
-                    })
+                    PlayerControlView(game: game, player: game.player, inGame: $inGame)
                 } else {
                     Button("Play Again", action: {
                         game = Game()
