@@ -30,7 +30,7 @@ struct ContentView: View {
                 if(!inGame) {
                     Text(game.gameVictor)
                 } else {
-                    Text("Good Luck!")
+                    GameMessageView(player: game.player)
                 }
             }
             .padding()

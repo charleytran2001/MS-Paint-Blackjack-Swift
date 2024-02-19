@@ -18,6 +18,8 @@ class Player: ObservableObject  {
     @Published var total = 0
     var aceCheck = false
     var hardHand = true
+    var gameMessage = "Good Luck!"
+    var gameMessageNum = 0
     
     func hit() {
         if(total < 21 && deck.totalCards != 0) {
@@ -46,6 +48,65 @@ class Player: ObservableObject  {
             }
             
             deck.removeLastCard()
+        }
+        
+        if(total > 21) {
+            gameMessageNum = Int.random(in: 1...11)
+        } else if(total < 21) {
+            gameMessageNum = Int.random(in: 12...21)
+        } else if(total == 21) {
+            gameMessageNum = Int.random(in: 22...23)
+        }
+        
+        switch(gameMessageNum) {
+        case 1:
+            gameMessage = "Oops"
+        case 2:
+            gameMessage = "Whoops"
+        case 3:
+            gameMessage = "That's not good"
+        case 4:
+            gameMessage = "Uh-oh"
+        case 5:
+            gameMessage = "Oof"
+        case 6:
+            gameMessage = "Oopsy Daisy"
+        case 7:
+            gameMessage = "Yikes"
+        case 8:
+            gameMessage = "How did that happen"
+        case 9:
+            gameMessage = "Sadness"
+        case 10:
+            gameMessage = ":("
+        case 11:
+            gameMessage = "That's a problem"
+        case 12:
+            gameMessage = "Hmmmmm..."
+        case 13:
+            gameMessage = "I wonder..."
+        case 14:
+            gameMessage = "Let's see..."
+        case 15:
+            gameMessage = "Think about this..."
+        case 16:
+            gameMessage = "What now..."
+        case 17:
+            gameMessage = "Uhhh..."
+        case 18:
+            gameMessage = "Maybe..."
+        case 19:
+            gameMessage = "Perhaps..."
+        case 20:
+            gameMessage = "I CAN SEE IT!"
+        case 21:
+            gameMessage = "What to do..."
+        case 22:
+            gameMessage = "Lucky!"
+        case 23:
+            gameMessage = "Nice!"
+        default:
+            gameMessage = "Good Luck!"
         }
     }
 }

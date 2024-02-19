@@ -19,7 +19,7 @@ class Game: ObservableObject {
         player = Player(deck: deck)
         dealer = Dealer(deck: deck)
         
-        // Starting Hand
+        // Starting Hands
         player.hit()
         dealer.hit()
         player.hit()
