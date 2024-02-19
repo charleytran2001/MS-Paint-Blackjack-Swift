@@ -38,6 +38,8 @@ class Game: ObservableObject {
         }
         
         switch(true) {
+        case ((dealer.total == 21 && dealer.cards.count == 2) && (player.total == 21 && player.cards.count == 2)):
+            gameVictor = "Double Blackjack: It's a Tie"
         case (dealer.total == 21 && dealer.cards.count == 2):
             gameVictor = "Dealer Blackjack: You Lose"
         case (player.total == 21 && player.cards.count == 2):
@@ -46,12 +48,12 @@ class Game: ObservableObject {
             gameVictor = "Bust: You Lose"
         case (dealer.total > 21):
             gameVictor = "Dealer Bust: You Win"
-        case (player.total < dealer.total):
-            gameVictor = "Smaller Hand: You Lose"
-        case (player.total > dealer.total):
-            gameVictor = "Bigger Hand: You Win"
         case (player.total == dealer.total):
             gameVictor = "Equal Hands: It's a Tie"
+        case (player.total < dealer.total):
+            gameVictor = "You Have the Smaller Hand: You Lose"
+        case (player.total > dealer.total):
+            gameVictor = "You Have the Bigger Hand: You Win"
         default:
             gameVictor = "uh oh"
         }

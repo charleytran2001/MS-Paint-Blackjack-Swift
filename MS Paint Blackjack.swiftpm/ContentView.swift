@@ -11,21 +11,27 @@ struct ContentView: View {
             HStack {
                 DealerView(dealer: game.dealer, inGame: $inGame)
             }
-            
-            // Card Deck Info
-            HStack {
-                CardDeckView(deck: game.deck)
-            }
             .padding()
             
-            // Game Victor Message
-            if(!inGame) {
-                Text(game.gameVictor)
-            }
+//            // Card Deck Info
+//            HStack {
+//                CardDeckView(deck: game.deck)
+//            }
+//            .padding()
             
             // Player Cards
             HStack {
                 PlayerView(player: game.player)
+            }
+            .padding()
+            
+            // Game Victor Message
+            HStack {
+                if(!inGame) {
+                    Text(game.gameVictor)
+                } else {
+                    Text("Good Luck!")
+                }
             }
             .padding()
             
@@ -34,14 +40,22 @@ struct ContentView: View {
                 if(inGame) {
                     PlayerControlView(game: game, player: game.player, inGame: $inGame)
                 } else {
-                    Button("Play Again", action: {
+                    Button(action: {
                         game = Game()
                         inGame.toggle()
+                    }, label: {
+                        VStack(spacing: 0) {
+                            Image("restart")
+                            Text("PLAY AGAIN")
+                                .foregroundColor(.black)
+                        }
                     })
+                    
                 }
-                
             }
             
         }
+        .font(.custom("ChalkboardSE-Bold", size: 20))
+        
     }
 }
