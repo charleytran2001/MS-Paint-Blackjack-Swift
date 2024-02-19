@@ -14,16 +14,19 @@ struct PlayerView: View {
         VStack(spacing: 5) {
             // Display player's card total.
             Text("PLAYER TOTAL: \(player.total)")
-                .foregroundColor(player.total > 21 ? .red : .black)
+                .foregroundColor(player.total == 21 ? .green : (player.total > 21 ? .red : .black))
             
             HStack {
                 // Display all player cards.
                 ForEach(player.cards, id: \.self) { card in
-//                    Text("\(card.suit)\(card.face)")
-                    Image("\(card.suit)-\(card.face)")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 150)
+                    VStack(spacing: 0) {
+                        Image("\(card.suit)-\(card.face)")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 150)
+                        Text("\(player.suit2Icon(suit: card.suit))\(card.face)")
+                            .foregroundColor(card.suit == "S" || card.suit == "C" ? .black : .red)
+                    }
                 }
             }
         }

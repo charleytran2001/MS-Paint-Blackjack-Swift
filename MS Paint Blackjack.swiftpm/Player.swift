@@ -109,4 +109,19 @@ class Player: ObservableObject  {
             gameMessage = "Good Luck!"
         }
     }
+    
+    func suit2Icon(suit: String) -> String {
+        switch(suit) {
+        case "S":
+            return "♠"
+        case "H":
+            return "♥"
+        case "C":
+            return "♣"
+        case "D":
+            return "♦"
+        default:
+            return suit
+        }
+    }
 }
