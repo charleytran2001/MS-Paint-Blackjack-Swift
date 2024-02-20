@@ -55,7 +55,7 @@ class Player: ObservableObject  {
         } else if(total < 21) {
             gameMessageNum = Int.random(in: 12...21)
         } else if(total == 21) {
-            gameMessageNum = Int.random(in: 22...23)
+            gameMessageNum = Int.random(in: 22...25)
         }
         
         switch(gameMessageNum) {
@@ -88,7 +88,7 @@ class Player: ObservableObject  {
         case 14:
             gameMessage = "Let's see..."
         case 15:
-            gameMessage = "Think about this..."
+            gameMessage = "Let's think about this..."
         case 16:
             gameMessage = "What now..."
         case 17:
@@ -105,6 +105,10 @@ class Player: ObservableObject  {
             gameMessage = "Lucky!"
         case 23:
             gameMessage = "Nice!"
+        case 24:
+            gameMessage = "Right on!"
+        case 25:
+            gameMessage = "Cool!"
         default:
             gameMessage = "Good Luck!"
         }

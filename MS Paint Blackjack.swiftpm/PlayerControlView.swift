@@ -17,6 +17,10 @@ struct PlayerControlView: View {
     var body: some View {
         Button(action: {
             player.hit()
+            if(player.total > 21) {
+                game.stand()
+                inGame.toggle()
+            }
         }, label: {
             VStack(spacing: 0) {
                 Image("hit\(hitNum)")

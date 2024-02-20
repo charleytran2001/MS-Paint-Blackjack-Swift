@@ -27,11 +27,7 @@ struct ContentView: View {
             
             // Game Victor Message
             HStack {
-                if(!inGame) {
-                    Text(game.gameVictor)
-                } else {
-                    GameMessageView(player: game.player)
-                }
+                GameMessageView(game: game, player: game.player, inGame: $inGame)
             }
             .padding()
             
