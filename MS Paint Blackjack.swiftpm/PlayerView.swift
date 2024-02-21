@@ -27,6 +27,7 @@ struct PlayerView: View {
                         Text("\(player.suit2Icon(suit: card.suit))\(card.face)")
                             .foregroundColor(card.suit == "S" || card.suit == "C" ? .black : .red)
                     }
+                    .transition(.move(edge: .trailing))
                 }
             }
         }

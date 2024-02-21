@@ -37,13 +37,24 @@ class Game: ObservableObject {
             }
         }
         
+        // Win/Lose Messages
         switch(true) {
         case ((dealer.total == 21 && dealer.cards.count == 2) && (player.total == 21 && player.cards.count == 2)):
             gameVictor = "Double Blackjack: It's a Tie"
+        case ((dealer.total == 21 && dealer.cards.count == 2) && (player.total == 21 && player.cards.count > 2)):
+            gameVictor = "Dealer Blackjack Beats 21: You Lose"
+        case ((dealer.total == 21 && dealer.cards.count == 2) && (player.total == 21 && player.cards.count > 2)):
+            gameVictor = "Blackjack Beats Dealer 21: You Win"
         case (dealer.total == 21 && dealer.cards.count == 2):
             gameVictor = "Dealer Blackjack: You Lose"
         case (player.total == 21 && player.cards.count == 2):
             gameVictor = "Blackjack: You Win"
+        case ((dealer.total == 21 && dealer.cards.count > 2) && (player.total == 21 && player.cards.count > 2)):
+            gameVictor = "Double 21: It's a Tie"
+        case (dealer.total == 21 && dealer.cards.count > 2):
+            gameVictor = "Dealer 21: You Lose"
+        case (player.total == 21 && player.cards.count > 2):
+            gameVictor = "21: You Win"
         case (player.total > 21):
             gameVictor = "Bust: You Lose"
         case (dealer.total > 21):

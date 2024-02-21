@@ -50,12 +50,17 @@ class Player: ObservableObject  {
             deck.removeLastCard()
         }
         
-        if(total > 21) {
+        switch(true) {
+        case (cards.count == 2 && total != 21):
+            gameMessageNum = 0
+        case (total > 21):
             gameMessageNum = Int.random(in: 1...11)
-        } else if(total < 21) {
+        case (total < 21):
             gameMessageNum = Int.random(in: 12...21)
-        } else if(total == 21) {
+        case (total == 21):
             gameMessageNum = Int.random(in: 22...25)
+        default:
+            gameMessageNum = 0
         }
         
         switch(gameMessageNum) {

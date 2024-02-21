@@ -6,24 +6,31 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            Spacer()
+                .frame(height: 25)
             
-            // Dealer Cards
-            HStack {
-                DealerView(dealer: game.dealer, inGame: $inGame)
+            VStack {
+                // Dealer Cards
+                HStack {
+                    DealerView(dealer: game.dealer, inGame: $inGame)
+                }
+                .padding()
+                
+    //            // Card Deck Info
+    //            HStack {
+    //                CardDeckView(deck: game.deck)
+    //            }
+    //            .padding()
+                
+                Spacer()
+                    .frame(height: 20)
+                
+                // Player Cards
+                HStack {
+                    PlayerView(player: game.player)
+                }
+                .padding()
             }
-            .padding()
-            
-//            // Card Deck Info
-//            HStack {
-//                CardDeckView(deck: game.deck)
-//            }
-//            .padding()
-            
-            // Player Cards
-            HStack {
-                PlayerView(player: game.player)
-            }
-            .padding()
             
             // Game Victor Message
             HStack {
@@ -49,6 +56,7 @@ struct ContentView: View {
                     
                 }
             }
+            Spacer()
             
         }
         .font(.custom("ChalkboardSE-Bold", size: 20))
